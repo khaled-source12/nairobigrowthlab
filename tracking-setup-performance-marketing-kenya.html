@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Practical Guide to Tracking Setup for Performance Marketing in Kenya — NGL</title>
-<meta name="description" content="Pixel, Conversions API, and GA4 — what to set up first, and what most Kenyan SMEs get wrong with ad tracking.">
+<title>A Practical Guide to Tracking Setup for Performance Marketing in Kenya  NGL</title>
+<meta name="description" content="Pixel, Conversions API, and GA4  what to set up first, and what most Kenyan SMEs get wrong with ad tracking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -141,20 +141,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   </div>
 </header>
 <article class="post-body">
-  <p>Most underperforming ad accounts I audit for Kenyan SMEs don't actually have a bad campaign problem — they have a bad tracking problem. If the platform can't see what's converting, it can't optimize toward it, no matter how good the creative or targeting is. Here's the setup order that matters most.</p>
+  <p>Most underperforming ad accounts I audit for Kenyan SMEs don't actually have a bad campaign problem  they have a bad tracking problem. If the platform can't see what's converting, it can't optimize toward it, no matter how good the creative or targeting is. Here's the setup order that matters most.</p>
   <h2>1. Get the pixel firing correctly, first</h2>
-  <p>Before touching campaign structure, confirm the Meta Pixel (and Google tag, if you're running Google Ads) is actually installed on every relevant page and firing the right event at the right moment — page view, add to cart, initiate checkout, purchase. Use the platform's own test tools (Meta's Events Manager test events, Google Tag Assistant) and walk through your own site as a customer would. It's common to find the purchase event firing on the cart page instead of the confirmation page, which quietly inflates conversion numbers and confuses optimization.</p>
+  <p>Before touching campaign structure, confirm the Meta Pixel (and Google tag, if you're running Google Ads) is actually installed on every relevant page and firing the right event at the right moment  page view, add to cart, initiate checkout, purchase. Use the platform's own test tools (Meta's Events Manager test events, Google Tag Assistant) and walk through your own site as a customer would. It's common to find the purchase event firing on the cart page instead of the confirmation page, which quietly inflates conversion numbers and confuses optimization.</p>
   <h2>2. Add server-side tracking (Conversions API)</h2>
-  <p>Browser-based tracking alone under-reports conversions — ad blockers, iOS privacy settings, and slow connections (common on mobile data across Kenya) all cause pixel events to get lost before they reach Meta. Setting up Meta's Conversions API alongside the browser pixel sends the same event from your server, catching conversions the browser-only pixel misses. For a Kenyan e-commerce or fintech app, this single fix often recovers a meaningful percentage of "lost" conversions and directly improves how well the algorithm can optimize your spend.</p>
+  <p>Browser-based tracking alone under-reports conversions  ad blockers, iOS privacy settings, and slow connections (common on mobile data across Kenya) all cause pixel events to get lost before they reach Meta. Setting up Meta's Conversions API alongside the browser pixel sends the same event from your server, catching conversions the browser-only pixel misses. For a Kenyan e-commerce or fintech app, this single fix often recovers a meaningful percentage of "lost" conversions and directly improves how well the algorithm can optimize your spend.</p>
   <h2>3. Set up GA4 properly, not just as a formality</h2>
-  <p>GA4 gives you a platform-independent view of what's happening on your site, which matters when you're comparing Meta and TikTok performance side by side. The most common mistake is leaving GA4 on default event tracking and never defining the conversion events that actually matter for your business — a loan application started, a specific product purchased, a booking completed. Define these explicitly rather than relying on GA4's automatic "engagement" metrics, which don't tell you much about revenue.</p>
+  <p>GA4 gives you a platform-independent view of what's happening on your site, which matters when you're comparing Meta and TikTok performance side by side. The most common mistake is leaving GA4 on default event tracking and never defining the conversion events that actually matter for your business  a loan application started, a specific product purchased, a booking completed. Define these explicitly rather than relying on GA4's automatic "engagement" metrics, which don't tell you much about revenue.</p>
   <h2>4. Reconcile the numbers monthly</h2>
-  <p>Ad platform-reported conversions, GA4 conversions, and your actual backend sales or sign-up numbers will never match exactly — but they shouldn't be wildly apart either. A monthly reconciliation check (pick a date range, compare all three) catches tracking drift early, before it's led to weeks of budget decisions based on numbers that were quietly wrong.</p>
+  <p>Ad platform-reported conversions, GA4 conversions, and your actual backend sales or sign-up numbers will never match exactly  but they shouldn't be wildly apart either. A monthly reconciliation check (pick a date range, compare all three) catches tracking drift early, before it's led to weeks of budget decisions based on numbers that were quietly wrong.</p>
   <h2>The short version</h2>
   <ul>
     <li>Confirm the pixel fires on the right event, right page, every time.</li>
     <li>Add Conversions API to recover events the browser pixel misses.</li>
-    <li>Define real conversion events in GA4 — not just default engagement metrics.</li>
+    <li>Define real conversion events in GA4  not just default engagement metrics.</li>
     <li>Reconcile platform numbers against actual sales monthly.</li>
   </ul>
 </article>
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       var status = document.getElementById('form-status');
       if (status) {
-        status.textContent = "Thanks — this form isn't wired to an inbox yet. Please email or WhatsApp directly for now (see below).";
+        status.textContent = "Thanks  this form isn't wired to an inbox yet. Please email or WhatsApp directly for now (see below).";
         status.style.display = 'block';
       }
     });
