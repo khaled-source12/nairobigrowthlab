@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Practical Guide to Tracking Setup for Performance Marketing in Kenya — NGL</title>
+<meta name="description" content="Pixel, Conversions API, and GA4 — what to set up first, and what most Kenyan SMEs get wrong with ad tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:        #0F1A12;
+  --ink-soft:   #16241B;
+  --paper:      #F6F5EF;
+  --paper-dim:  #ECEAE0;
+  --growth:     #34A65A;
+  --growth-lit: #4ADE80;
+  --signal:     #FF6B45;
+  --line:       #D9D6C9;
+  --line-dark:  #24352A;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --container: 1160px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink-soft); font-family: var(--font-body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0 0 .4em; line-height: 1.08; letter-spacing: -0.01em; }
+p { margin: 0 0 1em; }
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 28px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--growth); }
+.eyebrow.on-ink { color: var(--growth-lit); }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; padding: 14px 24px; border-radius: 3px; border: 1.5px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--growth); color: var(--paper); }
+.btn-primary:hover { background: #2C8E4D; }
+.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--ink-soft); }
+.btn-ghost:hover { border-color: var(--growth); color: var(--growth); }
+.btn-ghost.on-ink { color: var(--paper); border-color: var(--line-dark); }
+.btn-ghost.on-ink:hover { border-color: var(--growth-lit); color: var(--growth-lit); }
+.site-nav { position: sticky; top: 0; z-index: 50; background: rgba(246,245,239,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.site-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 19px; text-decoration: none; color: var(--ink-soft); display: flex; align-items: center; gap: 9px; }
+.logo .mark { width: 11px; height: 11px; border-radius: 50%; background: var(--growth); }
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links a { text-decoration: none; font-size: 14px; color: var(--ink-soft); opacity: .72; transition: opacity .15s ease; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.nav-links a.active { color: var(--growth); opacity: 1; }
+.nav-cta { display: flex; align-items: center; gap: 18px; }
+.nav-toggle { display: none; }
+@media (max-width: 820px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; background: none; cursor: pointer; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--ink-soft); padding: 8px 12px; border-radius: 3px; }
+}
+.ticker { background: var(--ink); border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-flex; align-items: center; animation: ticker-scroll 32s linear infinite; }
+.ticker-track span { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; color: var(--growth-lit); padding: 14px 28px; border-right: 1px solid var(--line-dark); text-transform: uppercase; }
+.ticker-track span.dim { color: #7C8C82; }
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+.hero { background: var(--ink); color: var(--paper); padding: 88px 0 64px; }
+.hero h1 { font-size: clamp(38px, 5.4vw, 64px); color: var(--paper); max-width: 14ch; }
+.hero h1 em { font-style: normal; color: var(--growth-lit); }
+.hero .sub { font-size: 18px; color: #C7D2C9; max-width: 46ch; margin: 22px 0 34px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+section { padding: 84px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+.section-head h2 { font-size: clamp(26px, 3.4vw, 36px); }
+.section-head .desc { max-width: 40ch; color: #4A564D; font-size: 15px; margin: 0; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (max-width: 900px) { .grid-4, .grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+.card { background: var(--paper); padding: 32px 28px; }
+.card .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--signal); display: block; margin-bottom: 14px; }
+.card h3 { font-size: 20px; margin-bottom: 10px; }
+.card p { font-size: 14.5px; color: #4A564D; margin-bottom: 0; }
+.proof { background: var(--paper-dim); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.proof .wrap { display: flex; flex-wrap: wrap; gap: 40px; padding: 46px 28px; }
+.proof-item { flex: 1 1 180px; }
+.proof-item .num { font-family: var(--font-mono); font-size: 34px; color: var(--growth); }
+.proof-item .label { font-size: 13px; color: #56634F; margin-top: 4px; }
+.cta-band { background: var(--ink); color: var(--paper); padding: 76px 0; text-align: center; }
+.cta-band h2 { color: var(--paper); font-size: clamp(28px, 4vw, 42px); max-width: 22ch; margin: 0 auto 18px; }
+.cta-band p { color: #C7D2C9; max-width: 46ch; margin: 0 auto 30px; }
+footer { background: var(--ink); color: #9AA79C; padding: 52px 0 30px; border-top: 1px solid var(--line-dark); }
+footer .foot-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; margin-bottom: 36px; }
+footer .foot-col h4 { color: var(--paper); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; font-family: var(--font-mono); margin-bottom: 14px; }
+footer .foot-col a { display: block; text-decoration: none; color: #9AA79C; font-size: 14px; margin-bottom: 9px; transition: color .15s ease; }
+footer .foot-col a:hover { color: var(--growth-lit); }
+footer .foot-bottom { border-top: 1px solid var(--line-dark); padding-top: 22px; font-family: var(--font-mono); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.page-head { background: var(--ink); color: var(--paper); padding: 64px 0 48px; }
+.page-head h1 { color: var(--paper); font-size: clamp(32px, 4.6vw, 50px); max-width: 20ch; }
+.page-head p { color: #C7D2C9; max-width: 52ch; font-size: 17px; margin-top: 16px; }
+.form-field { margin-bottom: 20px; }
+.form-field label { display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; color: var(--ink-soft); }
+.form-field input, .form-field select, .form-field textarea { width: 100%; padding: 13px 14px; font-family: var(--font-body); font-size: 15px; border: 1.5px solid var(--line); border-radius: 3px; background: #fff; color: var(--ink-soft); }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--growth); }
+.form-field textarea { resize: vertical; min-height: 120px; }
+.post-card { padding: 30px 0; border-bottom: 1px solid var(--line); }
+.post-card:first-child { padding-top: 0; }
+.post-meta { font-family: var(--font-mono); font-size: 12px; color: var(--signal); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.post-card h2 { font-size: 24px; margin-bottom: 8px; }
+.post-card h2 a { text-decoration: none; color: var(--ink-soft); }
+.post-card h2 a:hover { color: var(--growth); }
+.post-card p.excerpt { color: #4A564D; font-size: 15px; }
+.post-card .read-more { font-family: var(--font-mono); font-size: 13px; color: var(--growth); text-decoration: none; }
+.post-body { max-width: 720px; margin: 0 auto; padding: 64px 28px; }
+.post-body h2 { font-size: 26px; margin-top: 1.6em; }
+.post-body h3 { font-size: 20px; margin-top: 1.4em; }
+.post-body p { font-size: 16.5px; color: #333F35; }
+.post-body ul, .post-body ol { color: #333F35; font-size: 16.5px; padding-left: 22px; }
+.post-body li { margin-bottom: 8px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--growth); outline-offset: 2px; }
+@media (max-width: 700px) { section { padding: 56px 0; } .hero { padding: 56px 0 44px; } }
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="mark"></span>NGL</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-cta"><a href="contact.html" class="btn btn-ghost">Contact</a><button class="nav-toggle">Menu</button></div>
+  </div>
+</nav>
+<header class="page-head">
+  <div class="wrap">
+    <span class="eyebrow on-ink">Tracking · 10 min read</span>
+    <h1>A Practical Guide to Tracking Setup for Performance Marketing in Kenya</h1>
+  </div>
+</header>
+<article class="post-body">
+  <p>Most underperforming ad accounts I audit for Kenyan SMEs don't actually have a bad campaign problem — they have a bad tracking problem. If the platform can't see what's converting, it can't optimize toward it, no matter how good the creative or targeting is. Here's the setup order that matters most.</p>
+  <h2>1. Get the pixel firing correctly, first</h2>
+  <p>Before touching campaign structure, confirm the Meta Pixel (and Google tag, if you're running Google Ads) is actually installed on every relevant page and firing the right event at the right moment — page view, add to cart, initiate checkout, purchase. Use the platform's own test tools (Meta's Events Manager test events, Google Tag Assistant) and walk through your own site as a customer would. It's common to find the purchase event firing on the cart page instead of the confirmation page, which quietly inflates conversion numbers and confuses optimization.</p>
+  <h2>2. Add server-side tracking (Conversions API)</h2>
+  <p>Browser-based tracking alone under-reports conversions — ad blockers, iOS privacy settings, and slow connections (common on mobile data across Kenya) all cause pixel events to get lost before they reach Meta. Setting up Meta's Conversions API alongside the browser pixel sends the same event from your server, catching conversions the browser-only pixel misses. For a Kenyan e-commerce or fintech app, this single fix often recovers a meaningful percentage of "lost" conversions and directly improves how well the algorithm can optimize your spend.</p>
+  <h2>3. Set up GA4 properly, not just as a formality</h2>
+  <p>GA4 gives you a platform-independent view of what's happening on your site, which matters when you're comparing Meta and TikTok performance side by side. The most common mistake is leaving GA4 on default event tracking and never defining the conversion events that actually matter for your business — a loan application started, a specific product purchased, a booking completed. Define these explicitly rather than relying on GA4's automatic "engagement" metrics, which don't tell you much about revenue.</p>
+  <h2>4. Reconcile the numbers monthly</h2>
+  <p>Ad platform-reported conversions, GA4 conversions, and your actual backend sales or sign-up numbers will never match exactly — but they shouldn't be wildly apart either. A monthly reconciliation check (pick a date range, compare all three) catches tracking drift early, before it's led to weeks of budget decisions based on numbers that were quietly wrong.</p>
+  <h2>The short version</h2>
+  <ul>
+    <li>Confirm the pixel fires on the right event, right page, every time.</li>
+    <li>Add Conversions API to recover events the browser pixel misses.</li>
+    <li>Define real conversion events in GA4 — not just default engagement metrics.</li>
+    <li>Reconcile platform numbers against actual sales monthly.</li>
+  </ul>
+</article>
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Not sure your tracking is trustworthy?</h2>
+    <p>A growth audit includes a full tracking check before any spend decisions are made.</p>
+    <a href="contact.html" class="btn btn-primary">Book a growth audit</a>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col"><h4>NGL</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a></div>
+      <div class="foot-col"><h4>Read</h4><a href="blog.html">Blog</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a href="contact.html">Contact</a><a href="mailto:hello@nairobigrowthlab.com">hello@nairobigrowthlab.com</a></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Nairobi Growth Lab</span><span>Nairobi, Kenya</span></div>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      var open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '76px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = '#F6F5EF';
+      links.style.borderBottom = '1px solid #D9D6C9';
+      links.style.padding = '20px 28px';
+      links.style.gap = '18px';
+    });
+  }
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var status = document.getElementById('form-status');
+      if (status) {
+        status.textContent = "Thanks — this form isn't wired to an inbox yet. Please email or WhatsApp directly for now (see below).";
+        status.style.display = 'block';
+      }
+    });
+  }
+});
+
+</script>
+</body>
+</html>
